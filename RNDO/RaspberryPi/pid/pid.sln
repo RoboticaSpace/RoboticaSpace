@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{3BDCA7E5-5316-4226-AE6B-BE9846C69D92}"
+	ProjectSection(SolutionItems) = preProject
+		Common.h = Common.h
+		GyroRNDOSender.cpp = GyroRNDOSender.cpp
+		Kalman.cpp = Kalman.cpp
+		Kalman.h = Kalman.h
+		LinuxUtils.cpp = LinuxUtils.cpp
+		LinuxUtils.h = LinuxUtils.h
+		PIDTest.cpp = PIDTest.cpp
+		RNDOMessage.cpp = RNDOMessage.cpp
+		RNDOMessage.h = RNDOMessage.h
+		RNDOTransmitClient.cpp = RNDOTransmitClient.cpp
+		RNDOTransmitClient.h = RNDOTransmitClient.h
+		Utils.cpp = Utils.cpp
+		Utils.h = Utils.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Header", "Header", "{BE31A7CF-B700-468A-9D1F-50525F802CAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B88B23B9-5F72-49FD-AA4B-C31F757AFC52}"
+	ProjectSection(SolutionItems) = preProject
+		Makefile = Makefile
+		Makefile.inc = Makefile.inc
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

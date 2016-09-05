@@ -1,0 +1,6 @@
+C:\JimsCode\CS\RNDO\XBox460Controller\bin\x64\Debug\XBox360Controller.dll
+C:\JimsCode\CS\RNDO\XBox460Controller\bin\x64\Debug\XBox360Controller.pdb
+C:\JimsCode\CS\RNDO\XBox460Controller\bin\x64\Debug\Microsoft.Xna.Framework.dll
+C:\JimsCode\CS\RNDO\XBox460Controller\bin\x64\Debug\Microsoft.Xna.Framework.xml
+C:\JimsCode\CS\RNDO\XBox460Controller\obj\x64\Debug\XBox360Controller.dll
+C:\JimsCode\CS\RNDO\XBox460Controller\obj\x64\Debug\XBox360Controller.pdb

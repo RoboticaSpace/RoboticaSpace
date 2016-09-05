@@ -1,0 +1,14 @@
+E:\JimsCode\CS\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.csprojResolveAssemblyReference.cache
+E:\JimsCode\CS\RNDO\RNDOClient\bin\Debug\RNDOClientInterface.dll
+E:\JimsCode\CS\RNDO\RNDOClient\bin\Debug\RNDOClientInterface.pdb
+E:\JimsCode\CS\RNDO\RNDOClient\bin\Debug\RNDO.dll
+E:\JimsCode\CS\RNDO\RNDOClient\bin\Debug\RNDO.pdb
+E:\JimsCode\CS\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.dll
+E:\JimsCode\CS\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.pdb
+E:\JimsCode\CS\RNDO\Debug\RNDOClientInterface.dll
+E:\JimsCode\CS\RNDO\Debug\RNDOClientInterface.pdb
+C:\JimsCode\CS\RNDO\Debug\RNDOClientInterface.dll
+C:\JimsCode\CS\RNDO\Debug\RNDOClientInterface.pdb
+C:\JimsCode\CS\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.csprojResolveAssemblyReference.cache
+C:\JimsCode\CS\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.dll
+C:\JimsCode\CS\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.pdb

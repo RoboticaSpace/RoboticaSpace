@@ -1,0 +1,12 @@
+
+CC=g++
+CFLAGS=-I.
+DEPS = Utils.h
+OBJ = Utils.o pid.o RNDOTransmitClient.o RNDOMessage.o 
+
+%.o: %.cpp $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS) -lwiringPi
+
+pid: $(OBJ)
+	gcc -o $@ $^ $(CFLAGS)
+

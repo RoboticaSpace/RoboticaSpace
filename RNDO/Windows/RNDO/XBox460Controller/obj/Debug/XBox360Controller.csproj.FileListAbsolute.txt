@@ -1,0 +1,5 @@
+C:\JimsCode\CS\RNDO\XBox460Controller\bin\Debug\XBox360Controller.dll
+C:\JimsCode\CS\RNDO\XBox460Controller\bin\Debug\XBox360Controller.pdb
+C:\JimsCode\CS\RNDO\XBox460Controller\obj\Debug\XBox360Controller.csprojResolveAssemblyReference.cache
+C:\JimsCode\CS\RNDO\XBox460Controller\obj\Debug\XBox360Controller.dll
+C:\JimsCode\CS\RNDO\XBox460Controller\obj\Debug\XBox360Controller.pdb

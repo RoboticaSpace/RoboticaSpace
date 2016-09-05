@@ -1,0 +1,9 @@
+C:\JimsCode\CS\RNDO\XBox460Controller\bin\x86\Debug\XBox360Controller.dll
+C:\JimsCode\CS\RNDO\XBox460Controller\bin\x86\Debug\XBox360Controller.pdb
+C:\JimsCode\CS\RNDO\XBox460Controller\bin\x86\Debug\Microsoft.Xna.Framework.dll
+C:\JimsCode\CS\RNDO\XBox460Controller\bin\x86\Debug\Microsoft.Xna.Framework.xml
+C:\JimsCode\CS\RNDO\XBox460Controller\obj\x86\Debug\XBox360Controller.dll
+C:\JimsCode\CS\RNDO\XBox460Controller\obj\x86\Debug\XBox360Controller.pdb
+C:\JimsCode\CS\RNDO\Debug\XBox360Controller.dll
+C:\JimsCode\CS\RNDO\Debug\XBox360Controller.pdb
+C:\JimsCode\CS\RNDO\XBox460Controller\obj\x86\Debug\XBox360Controller.csprojResolveAssemblyReference.cache
