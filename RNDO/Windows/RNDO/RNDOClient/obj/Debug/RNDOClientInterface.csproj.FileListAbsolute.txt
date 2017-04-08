@@ -12,3 +12,8 @@ C:\JimsCode\CS\RNDO\Debug\RNDOClientInterface.pdb
 C:\JimsCode\CS\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.csprojResolveAssemblyReference.cache
 C:\JimsCode\CS\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.dll
 C:\JimsCode\CS\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.pdb
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\Debug\RNDOClientInterface.dll
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\Debug\RNDOClientInterface.pdb
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.csprojResolveAssemblyReference.cache
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.dll
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOClient\obj\Debug\RNDOClientInterface.pdb

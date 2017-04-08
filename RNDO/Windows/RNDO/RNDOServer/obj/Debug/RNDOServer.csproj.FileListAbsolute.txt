@@ -19,3 +19,12 @@ C:\JimsCode\CS\RNDO\RNDOServer\obj\Debug\RNDOServer.RNDOServerScreen.resources
 C:\JimsCode\CS\RNDO\RNDOServer\obj\Debug\RNDOServer.csproj.GenerateResource.Cache
 C:\JimsCode\CS\RNDO\RNDOServer\obj\Debug\RNDOServer.exe
 C:\JimsCode\CS\RNDO\RNDOServer\obj\Debug\RNDOServer.pdb
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\Debug\RNDOServer.exe.config
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\Debug\RNDOServer.exe
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\Debug\RNDOServer.pdb
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOServer\obj\Debug\RNDOServer.csprojResolveAssemblyReference.cache
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOServer\obj\Debug\RNDOServer.Properties.Resources.resources
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOServer\obj\Debug\RNDOServer.RNDOServerScreen.resources
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOServer\obj\Debug\RNDOServer.csproj.GenerateResource.Cache
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOServer\obj\Debug\RNDOServer.exe
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOServer\obj\Debug\RNDOServer.pdb

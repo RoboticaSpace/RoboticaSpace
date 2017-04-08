@@ -18,3 +18,12 @@ C:\JimsCode\CS\RNDO\RNDODriverStation\obj\x86\Debug\RNDODriverStation.pdb
 C:\JimsCode\CS\RNDO\Debug\RNDODriverStation.exe.config
 C:\JimsCode\CS\RNDO\Debug\RNDODriverStation.exe
 C:\JimsCode\CS\RNDO\Debug\RNDODriverStation.pdb
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\Debug\RNDODriverStation.exe.config
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\Debug\RNDODriverStation.exe
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\Debug\RNDODriverStation.pdb
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDODriverStation\obj\x86\Debug\RNDODriverStation.csprojResolveAssemblyReference.cache
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDODriverStation\obj\x86\Debug\RNDODriverStation.Properties.Resources.resources
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDODriverStation\obj\x86\Debug\RNDODriverStation.RNDODriverStation.resources
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDODriverStation\obj\x86\Debug\RNDODriverStation.csproj.GenerateResource.Cache
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDODriverStation\obj\x86\Debug\RNDODriverStation.exe
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDODriverStation\obj\x86\Debug\RNDODriverStation.pdb

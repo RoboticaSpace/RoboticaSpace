@@ -64,9 +64,9 @@ namespace RNDOGraph
         Channel mNumber4 = new Channel(Color.DarkCyan, MAX_DATA_POINTS);
         Channel mNumber5 = new Channel(Color.Green, MAX_DATA_POINTS);
         Channel mNumber6 = new Channel(Color.Blue, MAX_DATA_POINTS);
-        Channel mNumber7 = new Channel(Color.YellowGreen, MAX_DATA_POINTS);
+        Channel mNumber7 = new Channel(Color.DarkGreen, MAX_DATA_POINTS);
         Channel mNumber8 = new Channel(Color.Purple, MAX_DATA_POINTS);
-        Channel mNumber9 = new Channel(Color.Orange, MAX_DATA_POINTS);
+        Channel mNumber9 = new Channel(Color.Olive, MAX_DATA_POINTS);
         Channel mNumber10 = new Channel(Color.Red, MAX_DATA_POINTS);
         int mCount = 0;
 

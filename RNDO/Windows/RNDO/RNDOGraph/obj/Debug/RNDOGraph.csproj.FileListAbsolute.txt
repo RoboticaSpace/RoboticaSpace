@@ -23,3 +23,12 @@ C:\JimsCode\CS\RNDO\RNDOGraph\obj\Debug\RNDOGraph.Properties.Resources.resources
 C:\JimsCode\CS\RNDO\RNDOGraph\obj\Debug\RNDOGraph.csproj.GenerateResource.Cache
 C:\JimsCode\CS\RNDO\RNDOGraph\obj\Debug\RNDOGraph.exe
 C:\JimsCode\CS\RNDO\RNDOGraph\obj\Debug\RNDOGraph.pdb
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\Debug\RNDOGraph.exe.config
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOGraph\obj\Debug\RNDOGraph.exe
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOGraph\obj\Debug\RNDOGraph.pdb
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\Debug\RNDOGraph.exe
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\Debug\RNDOGraph.pdb
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOGraph\obj\Debug\RNDOGraph.csprojResolveAssemblyReference.cache
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOGraph\obj\Debug\RNDOGraph.RNDOGraph.resources
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOGraph\obj\Debug\RNDOGraph.Properties.Resources.resources
+C:\JimsCode\RoboticaSpace\RoboticaSpace\RNDO\Windows\RNDO\RNDOGraph\obj\Debug\RNDOGraph.csproj.GenerateResource.Cache

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RNDOConfig>
-   <RNDOIP>192.168.143.193</RNDOIP>
+   <RNDOIP>10.9.49.83</RNDOIP>
    <LogFileRoot>E:\JimsCode\CS\RNDO\Debug</LogFileRoot>
    <port direction="Transmit" name="RNDOCommon" header="no">4542</port>
    <port direction="Receive" name="RNDOCommon">4543</port>
