@@ -87,6 +87,7 @@ uint8 mCommReceiveBuffer[MAX_BUFFER];
 uint8 mCommReceiveLocation = 0;
 uint8 mCommSendBuffer[MAX_SEND_BUFFER];
 uint8 mCurrentCommand;
+uint8 mCount = 0;
 
 sint16 mLeftMotor = 0;
 sint16 mRightMotor = 0;
@@ -105,6 +106,7 @@ void setup()
 {
   Wire.begin(8);                // join i2c bus with address #8
   Wire.onReceive(receiveEvent); // register event
+  Wire.onRequest(requestEvent); // register event
   Serial.begin(11500);           // start serial for output
   mBuzzer.playFrequency(6000, 250, 12);
 }
@@ -121,7 +123,7 @@ void loop()
 {
   uint8 count = 0;
   // Trim the garbage from the start
-  while ((START_CHAR != mCommReceiveBuffer[LOC_START]) && (count < mCommReceiveLocation))
+  while ((START_CHAR != mCommReceiveBuffer[count]) && (count < mCommReceiveLocation))
   {
     count++;
   }
@@ -148,6 +150,7 @@ void loop()
       RemoveDataForNextMessage(nextMessage, true);
     }
   }
+  delay(1);
 }
 
 //****************************************************************************
@@ -184,14 +187,26 @@ void ProcessPackets()
   {
     case(CMD_SET_BOTH_MOTORS):
       memcpy(&motorSpeed,&mCommReceiveBuffer[LOC_DATA],sizeof(sint16));
+
+      Serial.print("Both M:");
+      Serial.println(motorSpeed);
+      
       mMotors.setSpeeds(motorSpeed, motorSpeed);
       break;
     case(CMD_SET_LEFT_MOTOR):
       memcpy(&motorSpeed,&mCommReceiveBuffer[LOC_DATA],sizeof(sint16));
+
+      Serial.print("Left M:");
+      Serial.println(motorSpeed);
+      
       mMotors.setLeftSpeed(motorSpeed);
       break;
     case(CMD_SET_RIGHT_MOTOR):
       memcpy(&motorSpeed,&mCommReceiveBuffer[LOC_DATA],sizeof(sint16));
+
+      Serial.print("Right M:");
+      Serial.println(motorSpeed);
+      
       mMotors.setRightSpeed(motorSpeed);
       break;
     case(CMD_SET_BOTH_ENCODER):
@@ -241,7 +256,15 @@ void ProcessPackets()
     case(CMD_PLAY_BUZZER):
       memcpy(&note,&mCommReceiveBuffer[LOC_DATA],sizeof(sint16));
       memcpy(&theLength,&mCommReceiveBuffer[LOC_DATA+2],sizeof(sint16));
-      volumne = mCommReceiveBuffer[LOC_DATA+3];
+      volumne = mCommReceiveBuffer[LOC_DATA+4];
+
+      Serial.print("Note:");
+      Serial.print(note);
+      Serial.print(" Len:");
+      Serial.print(theLength);
+      Serial.print(" Vol:");
+      Serial.println(volumne);
+      
       mBuzzer.playFrequency(note,theLength,volumne);
       break;
   }
@@ -250,27 +273,6 @@ void ProcessPackets()
     mCommSendBuffer[LOC_COMMAND] = RSP_ACK;
     mCommSendBuffer[LOC_DATA] = mCurrentCommand;
   }
-}
-
-//----------------------------------------------------------------------------
-//  Purpose:
-//      Send the response back up the wire
-//
-//  Notes:
-//      None
-//
-//----------------------------------------------------------------------------
-void SendResponce()
-{
-  uint8 theLength = 3;
-  if(RSP_ACK != mCommSendBuffer[LOC_COMMAND])
-  {
-    theLength = 6;
-  }
-  mCommSendBuffer[LOC_START] == START_CHAR;
- 
-  mCommSendBuffer[theLength-LOC_CHECK_BYTE] = CalcCheckByte(mCommSendBuffer, 0, theLength-LOC_CHECK_BYTE);
-  Wire.write(mCommSendBuffer,theLength); 
 }
 
 //****************************************************************************
@@ -293,13 +295,40 @@ void SendResponce()
 //      None
 //
 //----------------------------------------------------------------------------
-void receiveEvent(sint32 howMany) 
+void receiveEvent(int howMany) 
 {
-  while ((1 < Wire.available())&&(mCommReceiveLocation<MAX_BUFFER)) 
+  while ((0 < Wire.available())&&(mCommReceiveLocation<MAX_BUFFER)) 
   {
     mCommReceiveBuffer[mCommReceiveLocation] = Wire.read(); 
+    Serial.print(">");
+    Serial.println(mCommReceiveBuffer[mCommReceiveLocation],HEX);
     mCommReceiveLocation++;
   }
+}
+
+//----------------------------------------------------------------------------
+//  Purpose:
+//      Send event to i2c
+//
+//  Notes:
+//      None
+//
+//----------------------------------------------------------------------------
+void requestEvent() 
+{
+  uint8 theLength = 4;
+  if(RSP_ACK != mCommSendBuffer[LOC_COMMAND])
+  {
+    theLength = 6;
+  }
+  mCommSendBuffer[LOC_START] = START_CHAR;
+ 
+  mCommSendBuffer[theLength-LOC_CHECK_BYTE] = CalcCheckByte(mCommSendBuffer, 0, theLength-LOC_CHECK_BYTE);
+
+  Serial.print("Len:");
+  Serial.println(theLength);
+  
+  Wire.write(mCommSendBuffer,theLength); 
 }
 
 //****************************************************************************
@@ -332,8 +361,17 @@ bool DoWeHaveAGoodMessage()
     //Is the preamble where it should be
     if (mCommReceiveBuffer[LOC_START] == START_CHAR)
     {
-      uint8 checkByte = CalcCheckByte(mCommReceiveBuffer, LOC_COMMAND, theLength - LOC_CHECK_BYTE);
+      uint8 checkByte = CalcCheckByte(mCommReceiveBuffer, LOC_START, theLength - LOC_CHECK_BYTE);
 
+      Serial.print("Len:");
+      Serial.print(theLength);
+      Serial.print(" CMD:");
+      Serial.print(mCommReceiveBuffer[LOC_COMMAND]);
+      Serial.print(" Calc:");
+      Serial.print(checkByte);
+      Serial.print(" Frm:");
+      Serial.println(mCommReceiveBuffer[theLength - LOC_CHECK_BYTE]);
+      
       if (checkByte == mCommReceiveBuffer[theLength - LOC_CHECK_BYTE])
       {
         returnValue = true;
@@ -362,7 +400,6 @@ bool DoWeHaveAGoodMessage()
 uint8 CalcCheckByte(uint8* data, uint8 start, uint8 number)
 {
   uint8 checkByte = 0xFF;
-
   for (uint8 index = 0; index < number; index++)
   {
     checkByte ^= data[start + index];
@@ -422,6 +459,11 @@ void RemoveDataForNextMessage(uint8 offset, bool isBad)
 {
   int index;
 
+  Serial.print("Remove:");
+  Serial.print(offset);
+  Serial.print(" I:");
+  Serial.println(mCommReceiveLocation);
+
   //Move the first 'offset' number of bytes forward.
   for (index = 0; index < mCommReceiveLocation - offset; index++)  // JSF162 JSF213 Exception
   {
@@ -455,6 +497,10 @@ void RemoveDataForNextMessage(uint8 offset, bool isBad)
       mCommReceiveBuffer[index] = 0;
     }
   }
+
+  Serial.print("Index:");
+  Serial.println(mCommReceiveLocation);
+ 
 }
 
 //----------------------------------------------------------------------------
@@ -465,11 +511,16 @@ void RemoveDataForNextMessage(uint8 offset, bool isBad)
 //      None
 //
 //----------------------------------------------------------------------------
-uint8 ReturnSize(uint8 command)
+uint8 ReturnSize(uint8 theCommand)
 {
+  if(0 == theCommand)
+  {
+    return 1;
+  }
+  
   for(int i=0;i< INDEX_MAX;i++)
   {
-    if(MESSAGE_CMD[i] == command)
+    if(MESSAGE_CMD[i] == theCommand)
     {
       return MESSAGE_SIZE[i];
     }
