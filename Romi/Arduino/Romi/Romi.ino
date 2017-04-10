@@ -108,6 +108,7 @@ void setup()
   Wire.onReceive(receiveEvent); // register event
   Wire.onRequest(requestEvent); // register event
   Serial.begin(11500);           // start serial for output
+  mEncoders.init();
   mBuzzer.playFrequency(6000, 250, 12);
 }
 
@@ -222,6 +223,12 @@ void ProcessPackets()
     case(CMD_LEFT_ENCODER):
       encoderValue = mEncoders.getCountsLeft();
       errorValue = mEncoders.checkErrorLeft();
+
+      Serial.print("Left E:");
+      Serial.print(encoderValue);
+      Serial.print(" Err:");
+      Serial.println(errorValue);
+      
       mCommSendBuffer[LOC_COMMAND] = RSP_LEFT_ENCODER;
       memcpy(&mCommSendBuffer[LOC_DATA],&encoderValue,sizeof(sint16));
       if(true == errorValue)
@@ -237,6 +244,12 @@ void ProcessPackets()
     case(CMD_RIGHT_ENCODER):
       encoderValue = mEncoders.getCountsRight();
       errorValue = mEncoders.checkErrorRight();
+
+      Serial.print("Right E:");
+      Serial.print(encoderValue);
+      Serial.print(" Err:");
+      Serial.println(errorValue);
+            
       mCommSendBuffer[LOC_COMMAND] = RSP_LEFT_ENCODER;
       memcpy(&mCommSendBuffer[LOC_DATA],&encoderValue,sizeof(sint16));
       if(true == errorValue)
@@ -300,8 +313,6 @@ void receiveEvent(int howMany)
   while ((0 < Wire.available())&&(mCommReceiveLocation<MAX_BUFFER)) 
   {
     mCommReceiveBuffer[mCommReceiveLocation] = Wire.read(); 
-    Serial.print(">");
-    Serial.println(mCommReceiveBuffer[mCommReceiveLocation],HEX);
     mCommReceiveLocation++;
   }
 }
@@ -325,9 +336,6 @@ void requestEvent()
  
   mCommSendBuffer[theLength-LOC_CHECK_BYTE] = CalcCheckByte(mCommSendBuffer, 0, theLength-LOC_CHECK_BYTE);
 
-  Serial.print("Len:");
-  Serial.println(theLength);
-  
   Wire.write(mCommSendBuffer,theLength); 
 }
 
@@ -362,7 +370,7 @@ bool DoWeHaveAGoodMessage()
     if (mCommReceiveBuffer[LOC_START] == START_CHAR)
     {
       uint8 checkByte = CalcCheckByte(mCommReceiveBuffer, LOC_START, theLength - LOC_CHECK_BYTE);
-
+#ifdef DEBUG
       Serial.print("Len:");
       Serial.print(theLength);
       Serial.print(" CMD:");
@@ -371,7 +379,7 @@ bool DoWeHaveAGoodMessage()
       Serial.print(checkByte);
       Serial.print(" Frm:");
       Serial.println(mCommReceiveBuffer[theLength - LOC_CHECK_BYTE]);
-      
+#endif      
       if (checkByte == mCommReceiveBuffer[theLength - LOC_CHECK_BYTE])
       {
         returnValue = true;
@@ -459,11 +467,6 @@ void RemoveDataForNextMessage(uint8 offset, bool isBad)
 {
   int index;
 
-  Serial.print("Remove:");
-  Serial.print(offset);
-  Serial.print(" I:");
-  Serial.println(mCommReceiveLocation);
-
   //Move the first 'offset' number of bytes forward.
   for (index = 0; index < mCommReceiveLocation - offset; index++)  // JSF162 JSF213 Exception
   {
@@ -497,10 +500,6 @@ void RemoveDataForNextMessage(uint8 offset, bool isBad)
       mCommReceiveBuffer[index] = 0;
     }
   }
-
-  Serial.print("Index:");
-  Serial.println(mCommReceiveLocation);
- 
 }
 
 //----------------------------------------------------------------------------
