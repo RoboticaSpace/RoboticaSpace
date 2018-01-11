@@ -46,13 +46,15 @@ const uint8 INDEX_SET_LEFT_Encoder  =  4;
 const uint8 INDEX_SET_RIGHT_ENCODER =  5;
 const uint8 INDEX_GET_LEFT_ENCODER  =  6;
 const uint8 INDEX_GET_RIGHT_ENCODER =  7;
-const uint8 INDEX_GET_SWITCHES      =  8;
-const uint8 INDEX_GET_ANALOG        =  9;
-const uint8 INDEX_PLAY_BUZZER       = 10;
-const uint8 INDEX_MAX               = 11;
+const uint8 INDEX_GET_LEFT_RATE     =  8;
+const uint8 INDEX_GET_RIGHT_RATE    =  9;
+const uint8 INDEX_GET_SWITCHES      = 10;
+const uint8 INDEX_GET_ANALOG        = 11;
+const uint8 INDEX_PLAY_BUZZER       = 12;
+const uint8 INDEX_MAX               = 13;
 
-uint8 MESSAGE_SIZE[] = {   5,    5,    5,    3,    3,    3,    3,    3,    3,    4,    8};
-uint8 MESSAGE_CMD[]  = {0x20, 0x21, 0x22, 0x30, 0x31, 0x32, 0x41, 0x42, 0x48, 0x49, 0x90};
+uint8 MESSAGE_SIZE[] = {   5,    5,    5,    3,    3,    3,    3,    3,    3,    3,    3,    4,    8};
+uint8 MESSAGE_CMD[]  = {0x20, 0x21, 0x22, 0x30, 0x31, 0x32, 0x41, 0x42, 0x43, 0x44, 0x48, 0x49, 0x90};
 
 const uint8 CMD_SET_BOTH_MOTORS   = 0x20;
 const uint8 CMD_SET_LEFT_MOTOR    = 0x21;
@@ -62,12 +64,16 @@ const uint8 CMD_SET_LEFT_ENCODER  = 0x31;
 const uint8 CMD_SET_RIGHT_ENCODER = 0x32;
 const uint8 CMD_LEFT_ENCODER      = 0x41;
 const uint8 CMD_RIGHT_ENCODER     = 0x42;
+const uint8 CMD_LEFT_RATE         = 0x43;
+const uint8 CMD_RIGHT_RATE        = 0x44;
 const uint8 CMD_SWITCHES          = 0x48;
 const uint8 CMD_GET_ANALOG        = 0x49;
 const uint8 CMD_PLAY_BUZZER       = 0x90;
 
 const uint8 RSP_LEFT_ENCODER      = 0x51;
 const uint8 RSP_RIGHT_ENCODER     = 0x52;
+const uint8 RSP_LEFT_RATE         = 0x53;
+const uint8 RSP_RIGHT_RATE        = 0x54;
 const uint8 RSP_SWITCHES          = 0x58; 
 const uint8 RSP_ANALOG            = 0x59;
 const uint8 RSP_ACK               = 0xF0;
@@ -151,7 +157,6 @@ void loop()
       RemoveDataForNextMessage(nextMessage, true);
     }
   }
-  delay(1);
 }
 
 //****************************************************************************
@@ -178,7 +183,7 @@ void ProcessPackets()
 {
   bool sendAck = true;
   sint16 motorSpeed = 0;
-  sint16 encoderValue = 0;
+  sint32 encoderValue = 0;
   bool errorValue = false;
   uint16 note = 0;
   uint16 theLength = 0;
@@ -230,14 +235,14 @@ void ProcessPackets()
       Serial.println(errorValue);
       
       mCommSendBuffer[LOC_COMMAND] = RSP_LEFT_ENCODER;
-      memcpy(&mCommSendBuffer[LOC_DATA],&encoderValue,sizeof(sint16));
+      memcpy(&mCommSendBuffer[LOC_DATA],&encoderValue,sizeof(sint32));
       if(true == errorValue)
       {
-        mCommSendBuffer[LOC_DATA+2] = 0x01;
+        mCommSendBuffer[LOC_DATA+4] = 0x01;
       }
       else
       {
-        mCommSendBuffer[LOC_DATA+2] = 0x00;
+        mCommSendBuffer[LOC_DATA+4] = 0x00;
       }
       sendAck = false;
       break;
@@ -250,7 +255,49 @@ void ProcessPackets()
       Serial.print(" Err:");
       Serial.println(errorValue);
             
-      mCommSendBuffer[LOC_COMMAND] = RSP_LEFT_ENCODER;
+      mCommSendBuffer[LOC_COMMAND] = RSP_RIGHT_ENCODER;
+      memcpy(&mCommSendBuffer[LOC_DATA],&encoderValue,sizeof(sint32));
+      if(true == errorValue)
+      {
+        mCommSendBuffer[LOC_DATA+4] = 0x01;
+      }
+      else
+      {
+        mCommSendBuffer[LOC_DATA+4] = 0x00;
+      }
+      sendAck = false;
+      break;
+    case(CMD_LEFT_RATE):
+      encoderValue = mEncoders.getRateLeft();
+      errorValue = mEncoders.checkErrorLeft();
+
+      Serial.print("Left R:");
+      Serial.print(encoderValue);
+      Serial.print(" Err:");
+      Serial.println(errorValue);
+      
+      mCommSendBuffer[LOC_COMMAND] = RSP_LEFT_RATE;
+      memcpy(&mCommSendBuffer[LOC_DATA],&encoderValue,sizeof(sint32));
+      if(true == errorValue)
+      {
+        mCommSendBuffer[LOC_DATA+2] = 0x01;
+      }
+      else
+      {
+        mCommSendBuffer[LOC_DATA+2] = 0x00;
+      }
+      sendAck = false;
+      break;
+    case(CMD_RIGHT_RATE):
+      encoderValue = mEncoders.getRateRight();
+      errorValue = mEncoders.checkErrorRight();
+
+      Serial.print("Right R:");
+      Serial.print(encoderValue);
+      Serial.print(" Err:");
+      Serial.println(errorValue);
+            
+      mCommSendBuffer[LOC_COMMAND] = RSP_RIGHT_RATE;
       memcpy(&mCommSendBuffer[LOC_DATA],&encoderValue,sizeof(sint16));
       if(true == errorValue)
       {
@@ -315,6 +362,7 @@ void receiveEvent(int howMany)
     mCommReceiveBuffer[mCommReceiveLocation] = Wire.read(); 
     mCommReceiveLocation++;
   }
+  loop();
 }
 
 //----------------------------------------------------------------------------
@@ -330,7 +378,7 @@ void requestEvent()
   uint8 theLength = 4;
   if(RSP_ACK != mCommSendBuffer[LOC_COMMAND])
   {
-    theLength = 6;
+    theLength = 7;
   }
   mCommSendBuffer[LOC_START] = START_CHAR;
  
